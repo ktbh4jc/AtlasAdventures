@@ -2,21 +2,24 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-    @user = User.new(name: 'Example User', email: 'user@example.com')
+    @user = FactoryBot.build(:user)
   end
 
   subject { @user }
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should respond_to(:password_digest)}
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation)}
   it { should be_valid }
 
   describe 'when name is not present' do
-    before { @user.name = " " }
+    before { @user.name = ' ' }
     it { should_not be_valid }
   end
 
   describe 'when email is not present' do
-    before { @user.email = " " }
+    before { @user.email = ' ' }
     it { should_not be_valid }
   end
 
@@ -53,6 +56,36 @@ RSpec.describe User, type: :model do
       user_with_same_email.save
     end
 
+    it { should_not be_valid }
+  end
+
+  describe 'when email is entered with capital letters' do
+    it 'should downcase the email' do
+      mixed_case_email = 'FoO@exAmplE.BAr'
+      @user.email = mixed_case_email
+      @user.save
+      expect(@user.email).to eq mixed_case_email.downcase
+    end
+  end
+
+  describe 'when password doesn\'t match confirmation' do
+    before { @user.password_confirmation = 'mismatch' }
+    it { should_not be_valid }
+  end
+
+  describe 'when password is not present' do
+    before do
+      @user = User.new(name: 'Example User', email: 'user@example.com',
+                       password: ' ', password_confirmation: ' ')
+    end
+    it { should_not be_valid }
+  end
+
+  describe 'when password is too short' do
+    before do
+      @user = User.new(name: 'Example User', email: 'user@example.com',
+                       password: 'a' * 5, password_confirmation: 'a' * 5)
+    end
     it { should_not be_valid }
   end
 end
