@@ -24,3 +24,7 @@
 
 # Ignore all jetbrains stuff
 /.idea/
+
+# Ignore auto-generated test logs
+/spec/examples.txt
+coverage

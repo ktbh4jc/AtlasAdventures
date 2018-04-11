@@ -15,7 +15,7 @@ $ rspec
 # To run specific specs:
 $ rspec spec/path_to_spec:lineNumber
 ```
-
+To check the code coverage of your tests, open `./coverage/index.html` in your web browser after running your specs.
 
 
 ### Contribution guide
@@ -30,3 +30,8 @@ SO, you think you can make this better? GREAT! There are, however, certain requi
     -This includes squashing your commits down into one.
 6. You are expected to follow all present structures and paradigms.
 7. Readability is more important than pulling off some sweet programing jank.
+
+### FAQs (mostly asked by me at this point)  
+What is with the `frozen_string_literal: true` comment everywhere?  
+  - Good question. By freezing all string literals, you cut back on redundant duplication. Hopefully Ruby 3 defaults to
+  frozen strings so we don't need this ugly comment everywhere.

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -8,9 +10,9 @@ RSpec.describe User, type: :model do
   subject { @user }
   it { should respond_to(:name) }
   it { should respond_to(:email) }
-  it { should respond_to(:password_digest)}
+  it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
-  it { should respond_to(:password_confirmation)}
+  it { should respond_to(:password_confirmation) }
   it { should be_valid }
 
   describe 'when name is not present' do

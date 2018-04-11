@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'SiteLayouts', type: :request do
@@ -13,6 +15,5 @@ RSpec.describe 'SiteLayouts', type: :request do
     # Footer
     it { should have_link('About', href: about_path) }
     it { should have_link('Contact', href: contact_path) }
-
   end
 end

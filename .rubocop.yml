@@ -1,0 +1,18 @@
+AllCops:
+  Excludes:
+    - bin/*
+    - db/schema.rb
+
+# Customize rules
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
