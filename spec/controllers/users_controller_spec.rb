@@ -8,7 +8,7 @@ RSpec.describe UsersController, type: :controller do
     before { visit signup_path }
     it { should have_http_status(:success) }
     it { should render_template(:new) }
-    end
+  end
 
   describe 'GET #show' do
     subject { page }
